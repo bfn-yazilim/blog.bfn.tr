@@ -25,6 +25,11 @@ pnpm-debug.log*
 # ignore Jampack cache files
 .jampack/
 
+# wrangler
+.wrangler/
+.dev.vars
+.env.local
+
 # yarn
 .yarn/*
 !.yarn/patches
