@@ -4,11 +4,10 @@ import Layout from "@layouts/Layout.astro";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 import LinkButton from "@components/LinkButton.astro";
-import Hr from "@components/Hr.astro";
 import Card from "@components/Card";
-import Socials from "@components/Socials.astro";
 import getSortedPosts from "@utils/getSortedPosts";
-import { SOCIALS } from "@config";
+import getUniqueTags from "@utils/getUniqueTags";
+import { SITE } from "@config";
 
 const posts = await getCollection("blog");
 
@@ -16,102 +15,79 @@ const sortedPosts = getSortedPosts(posts);
 const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
 const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
 
-const socialCount = SOCIALS.filter(social => social.active).length;
+const featured = featuredPosts[0] ?? sortedPosts[0];
+const rest = featured
+  ? sortedPosts.filter(p => p.slug !== featured.slug).slice(0, 6)
+  : recentPosts.slice(0, 6);
+
+const tags = getUniqueTags(posts);
 ---
 
 <Layout>
-  <Header />
+  <Header activeNav="posts" />
   <main id="main-content">
     <section id="hero">
-      <h1>Mingalaba</h1>
-      <a
-        target="_blank"
-        href="/rss.xml"
-        class="rss-link"
-        aria-label="rss feed"
-        title="RSS Feed"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" class="rss-icon"
-          ><path
-            d="M19 20.001C19 11.729 12.271 5 4 5v2c7.168 0 13 5.832 13 13.001h2z"
-          ></path><path
-            d="M12 20.001h2C14 14.486 9.514 10 4 10v2c4.411 0 8 3.589 8 8.001z"
-          ></path><circle cx="6" cy="18" r="2"></circle>
-        </svg>
-        <span class="sr-only">RSS Feed</span>
-      </a>
-
-      <p>
-        AstroPaper is a minimal, responsive, accessible and SEO-friendly Astro
-        blog theme. This theme follows best practices and provides accessibility
-        out of the box. Light and dark mode are supported by default. Moreover,
-        additional color schemes can also be configured.
-      </p>
-      <p>
-        Read the blog posts or check
-        <LinkButton
-          className="underline decoration-dashed underline-offset-4 hover:text-skin-accent"
-          href="https://github.com/satnaing/astro-paper#readme"
-        >
-          README
-        </LinkButton> for more info.
-      </p>
-      {
-        // only display if at least one social link is enabled
-        socialCount > 0 && (
-          <div class="social-wrapper">
-            <div class="social-links">Social Links:</div>
-            <Socials />
-          </div>
-        )
-      }
+      <p class="eyebrow">Yazılım · {SITE.author}</p>
+      <h1>{SITE.title}</h1>
+      <p class="lede">{SITE.desc}</p>
     </section>
 
-    <Hr />
+    <div class="tag-row">
+      <LinkButton href="/tags/" className="tag-pill tag-pill--all">
+        Tümü
+      </LinkButton>
+      {
+        tags.map(({ tag, tagName }) => (
+          <LinkButton href={`/tags/${tag}/`} className="tag-pill">
+            {tagName}
+          </LinkButton>
+        ))
+      }
+      <span class="count-label">{sortedPosts.length} yazı</span>
+    </div>
 
     {
-      featuredPosts.length > 0 && (
-        <>
-          <section id="featured">
-            <h2>Featured</h2>
-            <ul>
-              {featuredPosts.map(({ data, slug }) => (
-                <Card
-                  href={`/posts/${slug}/`}
-                  frontmatter={data}
-                  secHeading={false}
-                />
-              ))}
-            </ul>
-          </section>
-          {recentPosts.length > 0 && <Hr />}
-        </>
+      featured && (
+        <article class="featured-post">
+          <div class="meta-row">
+            <span class="eyebrow-accent">Öne çıkan</span>
+            <span class="dash" />
+            <span class="muted">{featured.data.tags[0]}</span>
+          </div>
+          <h2>
+            <a href={`/posts/${featured.slug}/`}>{featured.data.title}</a>
+          </h2>
+          <p class="dek">{featured.data.description}</p>
+        </article>
       )
     }
 
-    {
-      recentPosts.length > 0 && (
-        <section id="recent-posts">
-          <h2>Recent Posts</h2>
-          <ul>
-            {recentPosts.map(
-              ({ data, slug }, index) =>
-                index < 4 && (
-                  <Card
-                    href={`/posts/${slug}/`}
-                    frontmatter={data}
-                    secHeading={false}
-                  />
-                )
-            )}
-          </ul>
-        </section>
-      )
-    }
+    <ul class="post-list">
+      {
+        rest.map(({ data, slug }) => (
+          <Card
+            href={`/posts/${slug}/`}
+            frontmatter={data}
+            secHeading={false}
+          />
+        ))
+      }
+    </ul>
+
+    <section class="newsletter">
+      <div>
+        <h4>Yeni yazılar e-postana gelsin</h4>
+        <p>Ayda bir özet. Reklam yok, takip kodu yok, tek tıkla çıkış.</p>
+      </div>
+      <form class="newsletter-form">
+        <input type="email" placeholder="ad@eposta.com" aria-label="E-posta" />
+        <button type="submit">Kaydol</button>
+      </form>
+    </section>
 
     <div class="all-posts-btn-wrapper">
       <LinkButton href="/posts/">
-        All Posts
+        Tüm yazılar
         <svg xmlns="http://www.w3.org/2000/svg"
           ><path
             d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"
@@ -125,38 +101,92 @@ const socialCount = SOCIALS.filter(social => social.active).length;
 </Layout>
 
 <style>
-  /* ===== Hero Section ===== */
-  #hero {
-    @apply pb-6 pt-8;
-  }
-  #hero h1 {
-    @apply my-4 inline-block text-3xl font-bold sm:my-8 sm:text-5xl;
-  }
-  #hero .rss-link {
-    @apply mb-6;
-  }
-  #hero .rss-icon {
-    @apply mb-2 h-6 w-6 scale-110 fill-skin-accent sm:mb-3 sm:scale-125;
-  }
-  #hero p {
-    @apply my-2;
-  }
-  .social-wrapper {
-    @apply mt-4 flex flex-col sm:flex-row sm:items-center;
-  }
-  .social-links {
-    @apply mb-1 mr-2 whitespace-nowrap sm:mb-0;
+  #main-content {
+    @apply mx-auto w-full max-w-3xl px-4 pb-16 pt-10 sm:pt-16;
   }
 
-  /* ===== Featured & Recent Posts Sections ===== */
-  #featured,
-  #recent-posts {
-    @apply pb-6 pt-12;
+  /* ===== Hero ===== */
+  #hero {
+    @apply max-w-xl pb-10;
   }
-  #featured h2,
-  #recent-posts h2 {
-    @apply text-2xl font-semibold tracking-wide;
+  .eyebrow {
+    @apply mb-3 text-xs font-semibold uppercase tracking-widest text-skin-accent;
   }
+  #hero h1 {
+    @apply mb-3 text-4xl leading-tight tracking-tight sm:text-5xl;
+  }
+  .lede {
+    @apply text-lg leading-relaxed text-skin-base/70;
+  }
+
+  /* ===== Tag row ===== */
+  .tag-row {
+    @apply mb-10 flex flex-wrap items-center gap-2 border-b border-skin-line pb-7;
+  }
+  .tag-row :global(.tag-pill) {
+    @apply rounded-full border border-skin-line bg-skin-card-muted px-4 py-1.5 text-sm font-medium text-skin-base/70 transition-colors hover:border-skin-fill/40 hover:text-skin-base;
+  }
+  .tag-row :global(.tag-pill--all) {
+    @apply border-skin-fill bg-skin-inverted text-skin-inverted;
+  }
+  .count-label {
+    @apply ml-auto text-sm text-skin-base/60;
+  }
+
+  /* ===== Featured post ===== */
+  .featured-post {
+    @apply mb-12;
+  }
+  .meta-row {
+    @apply mb-3 flex items-center gap-3 text-xs;
+  }
+  .meta-row .eyebrow-accent {
+    @apply font-semibold uppercase tracking-widest text-skin-accent;
+  }
+  .meta-row .dash {
+    @apply h-px w-4 bg-skin-line;
+  }
+  .meta-row .muted {
+    @apply text-skin-base/60;
+  }
+  .featured-post h2 {
+    @apply mb-3 max-w-2xl text-3xl leading-tight tracking-tight sm:text-4xl;
+  }
+  .featured-post h2 a {
+    @apply text-skin-base hover:text-skin-accent;
+  }
+  .featured-post .dek {
+    @apply max-w-xl text-base leading-relaxed text-skin-base/70;
+  }
+
+  /* ===== Post list ===== */
+  .post-list {
+    @apply flex flex-col;
+  }
+
+  /* ===== Newsletter ===== */
+  .newsletter {
+    @apply mt-16 flex flex-wrap items-center gap-8 rounded-2xl border border-skin-line bg-skin-card p-9;
+  }
+  .newsletter > div {
+    @apply flex-1;
+  }
+  .newsletter h4 {
+    @apply mb-2 text-xl;
+  }
+  .newsletter p {
+    @apply text-sm text-skin-base/70;
+  }
+  .newsletter-form {
+    @apply flex flex-wrap gap-2.5;
+  }
+  .newsletter-form input {
+    @apply w-56 rounded-lg border border-skin-line bg-skin-fill px-4 py-3 text-sm text-skin-base outline-none;
+  }
+  .newsletter-form button {
+    @apply rounded-lg border border-skin-accent bg-skin-accent px-5 py-3 text-sm font-semibold text-skin-inverted;
+  }
+
   .all-posts-btn-wrapper {
     @apply my-8 text-center;
   }

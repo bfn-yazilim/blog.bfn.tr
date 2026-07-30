@@ -6,19 +6,19 @@ import Footer from "@components/Footer.astro";
 import LinkButton from "@components/LinkButton.astro";
 ---
 
-<Layout title={`404 Not Found | ${SITE.title}`}>
+<Layout title={`404 | ${SITE.title}`}>
   <Header />
 
   <main id="main-content">
     <div class="not-found-wrapper">
-      <h1 aria-label="404 Not Found">404</h1>
+      <h1 aria-label="404">404</h1>
       <span aria-hidden="true">¯\_(ツ)_/¯</span>
-      <p>Page Not Found</p>
+      <p>Sayfa bulunamadı</p>
       <LinkButton
         href="/"
-        className="my-6 text-lg underline decoration-dashed underline-offset-8"
+        className="my-6 text-sm font-semibold text-skin-accent"
       >
-        Go back home
+        Ana sayfaya dön
       </LinkButton>
     </div>
   </main>
@@ -34,9 +34,9 @@ import LinkButton from "@components/LinkButton.astro";
     @apply mb-14 flex flex-col items-center justify-center;
   }
   .not-found-wrapper h1 {
-    @apply text-9xl font-bold text-skin-accent;
+    @apply font-display text-8xl font-normal text-skin-accent;
   }
   .not-found-wrapper p {
-    @apply mt-4 text-2xl sm:text-3xl;
+    @apply mt-4 text-xl text-skin-base/70 sm:text-2xl;
   }
 </style>

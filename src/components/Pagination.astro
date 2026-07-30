@@ -16,26 +16,28 @@ const next = currentPage < totalPages ? "" : "disabled";
 
 {
   totalPages > 1 && (
-    <nav class="pagination-wrapper" aria-label="Pagination">
+    <nav class="pagination-wrapper" aria-label="Sayfalama">
       <LinkButton
         disabled={prev === "disabled"}
         href={prevUrl}
-        className={`mr-4 select-none ${prev}`}
-        ariaLabel="Previous"
+        className={`pager-btn select-none ${prev}`}
+        ariaLabel="Önceki"
       >
         <svg xmlns="http://www.w3.org/2000/svg" class={`${prev}-svg`}>
           <path d="M12.707 17.293 8.414 13H18v-2H8.414l4.293-4.293-1.414-1.414L4.586 12l6.707 6.707z" />
         </svg>
-        Prev
+        Önceki
       </LinkButton>
-      {currentPage} / {totalPages}
+      <span class="page-count">
+        {currentPage} / {totalPages}
+      </span>
       <LinkButton
         disabled={next === "disabled"}
         href={nextUrl}
-        className={`ml-4 select-none ${next}`}
-        ariaLabel="Next"
+        className={`pager-btn select-none ${next}`}
+        ariaLabel="Sonraki"
       >
-        Next
+        Sonraki
         <svg xmlns="http://www.w3.org/2000/svg" class={`${next}-svg`}>
           <path d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z" />
         </svg>
@@ -46,7 +48,13 @@ const next = currentPage < totalPages ? "" : "disabled";
 
 <style>
   .pagination-wrapper {
-    @apply mb-8 mt-auto flex justify-center;
+    @apply mb-10 mt-auto flex items-center justify-center gap-4;
+  }
+  .pagination-wrapper :global(.pager-btn) {
+    @apply flex items-center gap-1 rounded-full border border-skin-line bg-skin-card px-4 py-2 text-sm font-medium hover:border-skin-fill/40;
+  }
+  .page-count {
+    @apply text-sm text-skin-base/60;
   }
   .disabled {
     @apply pointer-events-none select-none opacity-50 hover:text-skin-base group-hover:fill-skin-base;

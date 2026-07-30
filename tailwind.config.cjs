@@ -32,6 +32,7 @@ module.exports = {
           inverted: withOpacity("--color-text-base"),
           card: withOpacity("--color-card"),
           "card-muted": withOpacity("--color-card-muted"),
+          line: withOpacity("--color-border"),
         },
       },
       outlineColor: {
@@ -54,6 +55,8 @@ module.exports = {
         transparent: "transparent",
       },
       fontFamily: {
+        sans: ["Manrope", "system-ui", "sans-serif"],
+        display: ["Outfit", "system-ui", "sans-serif"],
         mono: ["IBM Plex Mono", "monospace"],
       },
 

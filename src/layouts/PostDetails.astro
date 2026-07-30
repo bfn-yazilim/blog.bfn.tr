@@ -1,10 +1,10 @@
 ---
+import type { CollectionEntry } from "astro:content";
 import Layout from "@layouts/Layout.astro";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 import Tag from "@components/Tag.astro";
 import Datetime from "@components/Datetime";
-import type { CollectionEntry } from "astro:content";
 import { slugifyStr } from "@utils/slugify";
 import ShareLinks from "@components/ShareLinks.astro";
 import { SITE } from "@config";
@@ -49,51 +49,64 @@ const layoutProps = {
 <Layout {...layoutProps}>
   <Header />
 
-  <!-- <div class="progress-container fixed top-0 z-10 h-1 w-full bg-skin-fill">
-    <div class="progress-bar h-1 w-0 bg-skin-accent" id="myBar"></div>
-  </div> -->
-
-  <div class="mx-auto flex w-full max-w-3xl justify-start px-2">
+  <div class="mx-auto flex w-full max-w-2xl justify-start px-4">
     <button
-      class="focus-outline mb-2 mt-8 flex hover:opacity-75"
+      class="focus-outline mb-2 mt-8 flex items-center gap-1 text-sm text-skin-base/70 hover:text-skin-base"
       onclick="(() => (history.length === 1) ? window.location = '/' : history.back())()"
     >
-      <svg xmlns="http://www.w3.org/2000/svg"
-        ><path
-          d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"
-        ></path>
-      </svg><span>Go back</span>
+      <span aria-hidden="true">←</span><span>Tüm yazılar</span>
     </button>
   </div>
   <main id="main-content">
-    <h1 transition:name={slugifyStr(title)} class="post-title">{title}</h1>
-    <Datetime
-      pubDatetime={pubDatetime}
-      modDatetime={modDatetime}
-      size="lg"
-      className="my-2"
-    />
-    <article id="article" role="article" class="prose mx-auto mt-8 max-w-3xl">
+    <article class="post-head">
+      <div class="meta-row">
+        {tags[0] && <span class="eyebrow-accent">{tags[0]}</span>}
+        {tags[0] && <span class="dash" />}
+        <Datetime
+          pubDatetime={pubDatetime}
+          modDatetime={modDatetime}
+          className="!m-0"
+        />
+      </div>
+      <h1 transition:name={slugifyStr(title)} class="post-title">{title}</h1>
+      {description && <p class="post-dek">{description}</p>}
+    </article>
+
+    <article id="article" role="article" class="prose mx-auto mt-2 max-w-2xl">
       <Content />
     </article>
 
-    <ul class="my-8">
+    <div
+      class="mx-auto flex max-w-2xl flex-wrap gap-2 border-t border-skin-line pb-2 pt-7"
+    >
       {tags.map(tag => <Tag tag={slugifyStr(tag)} />)}
-    </ul>
+    </div>
 
     <div
-      class="flex flex-col-reverse items-center justify-between gap-6 sm:flex-row-reverse sm:items-end sm:gap-4"
+      class="mx-auto flex max-w-2xl items-center gap-4 rounded-2xl border border-skin-line bg-skin-card p-6"
+    >
+      <div>
+        <p class="mb-1 text-sm font-semibold">{author}</p>
+        <p class="text-sm text-skin-base/70">
+          <a href="/about/" class="text-skin-accent hover:underline">Hakkında</a
+          >
+        </p>
+      </div>
+    </div>
+
+    <div
+      class="mx-auto mt-10 flex max-w-2xl flex-col-reverse items-center justify-between gap-6 sm:flex-row-reverse sm:items-end sm:gap-4"
     >
       <button
         id="back-to-top"
-        class="focus-outline whitespace-nowrap py-1 hover:opacity-75"
+        class="focus-outline whitespace-nowrap py-1 text-sm text-skin-base/70 hover:text-skin-base"
       >
         <svg xmlns="http://www.w3.org/2000/svg" class="rotate-90">
           <path
             d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"
           ></path>
         </svg>
-        <span>Back to Top</span>
+        <span>Yukarı çık</span>
       </button>
 
       <ShareLinks />
@@ -104,10 +117,25 @@ const layoutProps = {
 
 <style>
   main {
-    @apply mx-auto w-full max-w-3xl px-4 pb-12;
+    @apply mx-auto w-full max-w-2xl px-4 pb-16;
+  }
+  .post-head {
+    @apply mx-auto mb-2 max-w-2xl pt-4;
+  }
+  .meta-row {
+    @apply mb-4 flex items-center gap-3 text-xs;
+  }
+  .meta-row .eyebrow-accent {
+    @apply font-semibold uppercase tracking-widest text-skin-accent;
+  }
+  .meta-row .dash {
+    @apply h-px w-4 bg-skin-line;
   }
   .post-title {
-    @apply text-2xl font-semibold text-skin-accent;
+    @apply text-3xl leading-tight tracking-tight sm:text-4xl;
+  }
+  .post-dek {
+    @apply mt-4 text-lg leading-relaxed text-skin-base/70;
   }
 </style>
 

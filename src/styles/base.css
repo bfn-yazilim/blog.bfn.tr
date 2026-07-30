@@ -3,22 +3,77 @@
 @tailwind utilities;
 
 @layer base {
+  /* ===== kum (default) ===== */
   :root,
   html[data-theme="light"] {
-    --color-fill: 251, 254, 251;
-    --color-text-base: 40, 39, 40;
-    --color-accent: 0, 108, 172;
-    --color-card: 230, 230, 230;
-    --color-card-muted: 205, 205, 205;
-    --color-border: 236, 233, 233;
+    --color-fill: 250, 248, 244;
+    --color-text-base: 25, 23, 16;
+    --color-accent: 164, 56, 28;
+    --color-card: 255, 255, 255;
+    --color-card-muted: 241, 236, 226;
+    --color-border: 230, 224, 212;
   }
   html[data-theme="dark"] {
-    --color-fill: 33, 39, 55;
-    --color-text-base: 234, 237, 243;
-    --color-accent: 255, 107, 1;
-    --color-card: 52, 63, 96;
-    --color-card-muted: 138, 51, 2;
-    --color-border: 171, 75, 8;
+    --color-fill: 19, 18, 17;
+    --color-text-base: 242, 238, 229;
+    --color-accent: 229, 131, 86;
+    --color-card: 28, 27, 24;
+    --color-card-muted: 35, 33, 23;
+    --color-border: 44, 42, 37;
+  }
+
+  /* ===== mavi ===== */
+  html[data-palette="mavi"] {
+    --color-fill: 247, 248, 250;
+    --color-text-base: 20, 24, 33;
+    --color-accent: 47, 91, 208;
+    --color-card: 255, 255, 255;
+    --color-card-muted: 238, 241, 246;
+    --color-border: 226, 229, 235;
+  }
+  html[data-theme="dark"][data-palette="mavi"] {
+    --color-fill: 16, 19, 24;
+    --color-text-base: 238, 241, 246;
+    --color-accent: 127, 162, 245;
+    --color-card: 24, 28, 35;
+    --color-card-muted: 28, 33, 42;
+    --color-border: 38, 43, 52;
+  }
+
+  /* ===== yeşil ===== */
+  html[data-palette="yesil"] {
+    --color-fill: 246, 248, 245;
+    --color-text-base: 20, 26, 21;
+    --color-accent: 47, 107, 70;
+    --color-card: 255, 255, 255;
+    --color-card-muted: 234, 240, 231;
+    --color-border: 224, 230, 221;
+  }
+  html[data-theme="dark"][data-palette="yesil"] {
+    --color-fill: 16, 19, 16;
+    --color-text-base: 237, 241, 236;
+    --color-accent: 121, 185, 147;
+    --color-card: 24, 28, 24;
+    --color-card-muted: 27, 33, 27;
+    --color-border: 37, 43, 37;
+  }
+
+  /* ===== gri ===== */
+  html[data-palette="gri"] {
+    --color-fill: 245, 245, 245;
+    --color-text-base: 19, 19, 19;
+    --color-accent: 17, 17, 17;
+    --color-card: 255, 255, 255;
+    --color-card-muted: 237, 237, 237;
+    --color-border: 227, 227, 227;
+  }
+  html[data-theme="dark"][data-palette="gri"] {
+    --color-fill: 17, 17, 17;
+    --color-text-base: 240, 240, 240;
+    --color-accent: 230, 230, 230;
+    --color-card: 25, 25, 25;
+    --color-card-muted: 30, 30, 30;
+    --color-border: 40, 40, 40;
   }
   #sun-svg,
   html[data-theme="dark"] #moon-svg {
@@ -29,8 +84,14 @@
     display: block;
   }
   body {
-    @apply flex min-h-[100svh] flex-col bg-skin-fill font-mono text-skin-base 
+    @apply flex min-h-[100svh] flex-col bg-skin-fill font-sans text-skin-base antialiased
     selection:bg-skin-accent selection:bg-opacity-70 selection:text-skin-inverted;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display font-normal tracking-tight;
   }
   section,
   footer {
@@ -49,8 +110,9 @@
     sm:scale-110;
   }
   .prose {
-    @apply prose-headings:!mb-3 prose-headings:!text-skin-base 
-    prose-h3:italic prose-p:!text-skin-base 
+    @apply prose-headings:!mb-3 prose-headings:!font-display prose-headings:!font-normal
+    prose-headings:!tracking-tight prose-headings:!text-skin-base
+    prose-h3:italic prose-p:!text-skin-base
     prose-a:!text-skin-base prose-a:!decoration-dashed prose-a:underline-offset-8
     hover:prose-a:text-skin-accent prose-blockquote:!border-l-skin-accent
     prose-blockquote:border-opacity-50 prose-blockquote:opacity-80
