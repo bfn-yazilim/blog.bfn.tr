@@ -14,10 +14,10 @@ tags:
   - Yeni Parti
   - Bağış
 description: "Siyasette ve toplumsal yaşamda bir krizin ortaya çıkış biçimi
-  kadar, **o krizin ne zaman ve hangi konjonktürde kamuoyuna sunulduğu** da
-  hayati önem taşır. "
+  kadar, o krizin ne zaman ve hangi konjonktürde kamuoyuna sunulduğu da hayati
+  önem taşır. "
 ---
-Siyasette ve toplumsal yaşamda bir krizin ortaya çıkış biçimi kadar, **o krizin ne zaman ve hangi konjonktürde kamuoyuna sunulduğu** da hayati önem taşır. Ahbap Derneği nezdinde gündeme gelen yasa dışı işlemler ve usulsüzlük iddiaları, şüphesiz hukuki zeminde sonuna kadar soruşturulması gereken somut gerçekliklerdir. Ancak konunun uzmanları ve dikkatli gözlemciler için asıl kritik soru şurada yatmaktadır: *Uzun süredir bilinen veya birikmiş olan bu usulsüzlük dosyaları, neden tam da "Yeni Parti"nin bağış ve kitlesel finansman hamlesinin hemen öncesinde raftan indirildi?*
+Ahbap Derneği nezdinde gündeme gelen yasa dışı işlemler ve usulsüzlük iddiaları, şüphesiz hukuki zeminde sonuna kadar soruşturulması gereken somut gerçekliklerdir. Ancak konunun uzmanları ve dikkatli gözlemciler için asıl kritik soru şurada yatmaktadır: *Uzun süredir bilinen veya birikmiş olan bu usulsüzlük dosyaları, neden tam da "Yeni Parti"nin bağış ve kitlesel finansman hamlesinin hemen öncesinde raftan indirildi?*
 
 Bu durum, meselenin sadece bir sivil toplum denetimi olmadığını; somut krizlerin, siyasi alandaki yeni aktörleri henüz doğmadan finansal olarak boğmak amacıyla stratejik bir zamanlamayla araçsallaştırıldığını göstermektedir.
 
