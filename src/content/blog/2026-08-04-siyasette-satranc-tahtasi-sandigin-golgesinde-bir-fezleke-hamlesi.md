@@ -9,11 +9,15 @@ featured: false
 draft: false
 tags:
   - Yeni Parti
+  - Fezleke
+  - Özgür Özel
+description: Yeni Parti'nin iktidar yürüyüşündeki istikrarlı büyümesi, siyaset
+  sahnesindeki dengeleri her geçen gün biraz daha değiştiriyor. Bu yükselişin
+  karşı cephede yarattığı tedirginlik ise artık gizlenemez boyutlara ulaşmış
+  durumda. İktidar kanadında artan endişelerin somut bir yansıması olarak, Yeni
+  Parti liderliğinin önünü kesmeye ve rüzgarı tersine çevirmeye yönelik
+  stratejik hamleler peş peşe sahneye sürülüyor.
 ---
-
-
-Yeni Parti'nin iktidar yürüyüşündeki istikrarlı büyümesi, siyaset sahnesindeki dengeleri her geçen gün biraz daha değiştiriyor. Bu yükselişin karşı cephede yarattığı tedirginlik ise artık gizlenemez boyutlara ulaşmış durumda. İktidar kanadında artan endişelerin somut bir yansıması olarak, Yeni Parti liderliğinin önünü kesmeye ve rüzgarı tersine çevirmeye yönelik stratejik hamleler peş peşe sahneye sürülüyor.
-
 Bu hamlelerin en dikkat çekicisi kısa bir süre önce karşımıza çıktı. Ankara Cumhuriyet Başsavcılığı, Yeni Parti Genel Başkanı Özgür Özel ve Veli Ağbaba hakkında "zincirleme şekilde rüşvet almak" iddiasıyla bir fezleke hazırlayarak Adalet Bakanlığı’na gönderdi. Sürecin ilerleyiş biçimi, bağımsızlığı uzun süredir kamuoyunda tartışma konusu olan kurumların meşruiyet zırhı olarak nasıl kullanıldığını bir kez daha gözler önüne seriyor.
 
 Aslında iktidarın elindeki güce bakıldığında, hukuki prosedürleri bir vitrin gibi sunmaya ihtiyaç duymadan da istedikleri adımları atabilecekleri aşikâr. "Doğrudan müdahale etmek varken neden fezleke sürecine başvuruluyor?" sorusunun cevabı ise kilit bir faktörde, yani *halkta* gizli. Topluma, "Biz kurallara uygun, şeffaf ve hukuki bir işlem yapıyoruz" mesajı verilmeye çalışılıyor. Oysa bu titizlik maskesinin ardında, halkın göstereceği olası tepkiden duyulan derin bir korku yatıyor.
